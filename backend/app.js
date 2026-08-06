@@ -2,6 +2,7 @@ const express = require('express');
 const connection = require('./db');
 const cors = require('cors');
 const server = express();
+const bcrypt = require('bcryptjs');
 
 server.use(express.json());
 
@@ -85,3 +86,17 @@ server.delete('/filme/:id', (req, res) => {
     });
 });
 //-----------------------------------------------------------------------------------------------------------------------------------------
+//Usuários
+
+server.post('/usuario', (req, res) => {
+    const sql = "insert into Usuarios(nome, senha, assinatura) values (?, ?, ?)";
+    const nome = req.body.nome;
+    const senha = req.body.senha;
+    const assinatura = req.body.assinatura;
+    connection.query(sql, [nome, senha, assinatura], (erro, resultado) => {
+        if(erro){
+            return res.status(500).json({erro : erro.message});
+        }
+        return res.json(resultado);
+    });
+});
