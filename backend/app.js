@@ -98,7 +98,7 @@ server.post('/usuario', (req, res) => {
 });
 
 server.delete('/usuario/:id', (req, res) => {
-    const sql = "update from Usuarios set ativo = false where id_filme = ?";
+    const sql = "update from Usuarios set ativo = false where id_usuario = ?";
     const id = req.params.id;
     connection.query(sql, id, (erro, resultado) => {
         if(erro){
@@ -109,7 +109,7 @@ server.delete('/usuario/:id', (req, res) => {
 });
 
 server.put('/usuario/reativar/:id', (req, res) => {
-    const sql = "update from Usuarios set ativo = true where id_filme = ?";
+    const sql = "update from Usuarios set ativo = true where id_usuario = ?";
     const id = req.params.id;
     connection.query(sql, id, (erro, resultado) => {
         if(erro){
@@ -120,7 +120,7 @@ server.put('/usuario/reativar/:id', (req, res) => {
 });
 
 server.put('/usuario/:id', (req, res) => {
-    const sql = "update from Usuarios set nome = ?, senha = ?, assinatura = ? where id_filme = ? and ativo = true";
+    const sql = "update from Usuarios set nome = ?, senha = ?, assinatura = ? where id_usuario = ? and ativo = true";
     const id = req.params.id;
     const nome = req.body.nome;
     const senha = req.body.senha;
