@@ -122,3 +122,17 @@ server.put('/usuario/reativar/:id', (req, res) => {
         return res.json(resultado);
     });
 });
+
+server.put('/usuario/:id', (req, res) => {
+    const sql = "update from Usuarios set nome = ?, senha = ?, assinatura = ? where id_filme = ?";
+    const id = req.params.id;
+    const nome = req.body.nome;
+    const senha = req.body.senha;
+    const assinatura = req.body.assinatura;
+    connection.query(sql, [nome, senha, assinatura, id], (erro, resultado) => {
+        if(erro){
+            return res.status(500).json({erro : erro.message});
+        }
+        return res.json(resultado);
+    });
+});
