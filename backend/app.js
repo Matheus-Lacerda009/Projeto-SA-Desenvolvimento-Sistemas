@@ -135,4 +135,25 @@ server.put('/usuario/:id', (req, res) => {
     });
 });
 
+server.get('/usuario', (req, res) => {
+    const usuario = "select senha from Usuarios where ativo = true and nome_usuario = ?";
+    const identificador = req.body.identificador;
+    const senha = req.body.senha;
+    connection.query(usuario, identificador, (erro, resultado) => {
+        if(erro){
+            return res.status(500).json({erro : erro.message});
+        }
+        if(bcrypt.compare(senha, res.senha)){
+            return res.json({validacao : true});
+        }
+    });
+    const email = "select senha from Usuarios where ativo = true and nome_usuario = ?";
+    connection.query(email, identificador, (erro, resultado) => {
+        if(erro){
+            return res.status(500).json({erro : erro.message});
+        }
+        return res.json({validacao : bcrypt.compare(senha, res.senha)})
+    });
+});
+
 server.listen(8085);
