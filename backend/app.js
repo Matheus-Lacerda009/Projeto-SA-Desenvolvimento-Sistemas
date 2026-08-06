@@ -45,14 +45,10 @@ server.post('/filme', (req, res) => {
 });
 
 server.put('/filme/estado/:id', (req, res) => {
-    const sql = "update Filmes set ativo = ?, data_desativacao = ? where id_filme = ?";
+    const sql = "update Filmes set ativo = ? where id_filme = ?";
     const ativo = req.body.ativo;
     const id_filme = req.params.id;
-    let data_desativacao = null;
-    if(ativo){
-        data_desativacao = "curdate()"
-    }
-    connection.query(sql, [ativo, data_desativacao, id_filme], (erro, resultado) => {
+    connection.query(sql, [ativo, id_filme], (erro, resultado) => {
         if(erro){
             return res.status(500).json({erro : erro.message});
         }
