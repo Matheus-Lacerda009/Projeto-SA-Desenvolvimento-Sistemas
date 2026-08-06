@@ -19,9 +19,9 @@ server.get('/filme', (req, res) => {
     });
 });
 
-server.get('/filme', (req, res) => {
-    const sql = "select * from Filmes where nome_filme like '%?%'";
-    const nome = req.query.nome;
+server.get('/filme/busca', (req, res) => {
+    const sql = "select * from Filmes where nome_filme like ?";
+    const nome = `%${req.query.nome}%`;
     connection.query(sql, nome, (erro, resultado) => {
         if(erro){
             return res.status(500).json({erro : erro.message});
