@@ -87,7 +87,7 @@ server.put('/filme/:id', (req, res) => {
 server.post('/usuario', (req, res) => {
     const sql = "insert into Usuarios(nome, senha, assinatura) values (?, ?, ?)";
     const nome = req.body.nome;
-    const senha = req.body.senha;
+    const senha = bcrypt.hashSync(req.body.senha, 10);
     const assinatura = req.body.assinatura;
     connection.query(sql, [nome, senha, assinatura], (erro, resultado) => {
         if(erro){
