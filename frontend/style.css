@@ -1,0 +1,25 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.conteudo-total {
+    display: flex;
+}
+
+.metade-logo{
+    height: 100vh;
+    width: 50%;
+    background-color: #F8F9FA;
+    display: grid;
+    place-items: center;
+}
+.metade-logo img {
+    width: 90%;
+}
+
+.metade-login{
+    height: 100vh;
+    width: 50%;
+    background-color: #1C6C36;
+}
