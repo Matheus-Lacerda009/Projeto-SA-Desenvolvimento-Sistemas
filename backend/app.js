@@ -10,7 +10,7 @@ server.use(cors());
 
 //Filmes
 server.get('/filme', (req, res) => {
-    const sql = "select * from Filmes";
+    const sql = "select * from Filmes where ativo = true";
     connection.query(sql, (erro, resultado) => {
         if(erro){
             return res.status(500).json({erro : erro.message})
@@ -20,7 +20,7 @@ server.get('/filme', (req, res) => {
 });
 
 server.get('/filme/busca', (req, res) => {
-    const sql = "select * from Filmes where nome_filme like ?";
+    const sql = "select * from Filmes where nome_filme like ? and ativo = true";
     const nome = `%${req.query.nome}%`;
     connection.query(sql, nome, (erro, resultado) => {
         if(erro){
@@ -44,11 +44,21 @@ server.post('/filme', (req, res) => {
     });
 });
 
-server.put('/filme/estado/:id', (req, res) => {
-    const sql = "update Filmes set ativo = ? where id_filme = ?";
-    const ativo = req.body.ativo;
+server.delete('/filme/:id', (req, res) => {
+    const sql = "update Filmes set ativo = false where id_filme = ?";
     const id_filme = req.params.id;
-    connection.query(sql, [ativo, id_filme], (erro, resultado) => {
+    connection.query(sql, id_filme, (erro, resultado) => {
+        if(erro){
+            return res.status(500).json({erro : erro.message});
+        }
+        return res.json(resultado);
+    });
+});
+
+server.put('/filme/reativar/:id', (req, res) => {
+    const sql = "update Filmes set ativo = true where id_filme = ?";
+    const id_filme = req.params.id;
+    connection.query(sql, id_filme, (erro, resultado) => {
         if(erro){
             return res.status(500).json({erro : erro.message});
         }
@@ -57,7 +67,7 @@ server.put('/filme/estado/:id', (req, res) => {
 });
 
 server.put('/filme/:id', (req, res) => {
-    const sql = "update Filmes set nome_filme = ?, url = ? where id_filme = ?";
+    const sql = "update Filmes set nome_filme = ?, url = ? where id_filme = ? and ativo = true";
     const filme = {
         id_filme : req.params.id,
         nome_filme : req.body.nome_filme,
@@ -71,16 +81,6 @@ server.put('/filme/:id', (req, res) => {
     });
 });
 
-server.delete('/filme/:id', (req, res) => {
-    const sql = "delete from Filmes where id_filme = ?";
-    const id_filme = req.params.id;
-    connection.query(sql, id_filme, (erro, resultado) => {
-        if(erro){
-            return res.status(500).json({erro : erro.message});
-        }
-        return res.json(resultado);
-    });
-});
 //-----------------------------------------------------------------------------------------------------------------------------------------
 //Usuários
 
@@ -120,7 +120,7 @@ server.put('/usuario/reativar/:id', (req, res) => {
 });
 
 server.put('/usuario/:id', (req, res) => {
-    const sql = "update from Usuarios set nome = ?, senha = ?, assinatura = ? where id_filme = ?";
+    const sql = "update from Usuarios set nome = ?, senha = ?, assinatura = ? where id_filme = ? and ativo = true";
     const id = req.params.id;
     const nome = req.body.nome;
     const senha = req.body.senha;
@@ -132,3 +132,5 @@ server.put('/usuario/:id', (req, res) => {
         return res.json(resultado);
     });
 });
+
+server.listen(8085);
