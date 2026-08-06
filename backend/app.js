@@ -85,11 +85,12 @@ server.put('/filme/:id', (req, res) => {
 //Usuários
 
 server.post('/usuario', (req, res) => {
-    const sql = "insert into Usuarios(nome, senha, assinatura) values (?, ?, ?)";
+    const sql = "insert into Usuarios(nome, nome_usuario, senha, assinatura) values (?, ?, ?, ?)";
     const nome = req.body.nome;
+    const nome_usuario = req.body.nome_usuario;
     const senha = bcrypt.hashSync(req.body.senha, 10);
     const assinatura = req.body.assinatura;
-    connection.query(sql, [nome, senha, assinatura], (erro, resultado) => {
+    connection.query(sql, [nome, nome_usuario, senha, assinatura], (erro, resultado) => {
         if(erro){
             return res.status(500).json({erro : erro.message});
         }
@@ -98,7 +99,7 @@ server.post('/usuario', (req, res) => {
 });
 
 server.delete('/usuario/:id', (req, res) => {
-    const sql = "update from Usuarios set ativo = false where id_usuario = ?";
+    const sql = "update Usuarios set ativo = false where id_usuario = ?";
     const id = req.params.id;
     connection.query(sql, id, (erro, resultado) => {
         if(erro){
@@ -109,7 +110,7 @@ server.delete('/usuario/:id', (req, res) => {
 });
 
 server.put('/usuario/reativar/:id', (req, res) => {
-    const sql = "update from Usuarios set ativo = true where id_usuario = ?";
+    const sql = "update Usuarios set ativo = true where id_usuario = ?";
     const id = req.params.id;
     connection.query(sql, id, (erro, resultado) => {
         if(erro){
@@ -120,12 +121,13 @@ server.put('/usuario/reativar/:id', (req, res) => {
 });
 
 server.put('/usuario/:id', (req, res) => {
-    const sql = "update from Usuarios set nome = ?, senha = ?, assinatura = ? where id_usuario = ? and ativo = true";
+    const sql = "update Usuarios set nome = ?, nome_usuario = ?, senha = ?, assinatura = ? where id_usuario = ? and ativo = true";
     const id = req.params.id;
     const nome = req.body.nome;
+    const nome_usuario = req.body.nome_usuario;
     const senha = req.body.senha;
     const assinatura = req.body.assinatura;
-    connection.query(sql, [nome, senha, assinatura, id], (erro, resultado) => {
+    connection.query(sql, [nome, nome_usuario, senha, assinatura, id], (erro, resultado) => {
         if(erro){
             return res.status(500).json({erro : erro.message});
         }
