@@ -100,3 +100,14 @@ server.post('/usuario', (req, res) => {
         return res.json(resultado);
     });
 });
+
+server.delete('/usuario/:id', (req, res) => {
+    const sql = "update from Usuarios set ativo = false where id_filme = ?";
+    const id = req.params.id;
+    connection.query(sql, id, (erro, resultado) => {
+        if(erro){
+            return res.status(500).json({erro : erro.message});
+        }
+        return res.json(resultado);
+    });
+});
