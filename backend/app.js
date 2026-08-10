@@ -90,7 +90,7 @@ server.post('/usuario', (req, res) => {
     const nome_usuario = req.body.nome_usuario;
     const senha = bcrypt.hashSync(req.body.senha, 10);
     const assinatura = req.body.assinatura;
-    const email = req.body.email;
+    const email = req.body.email_usuario;
     connection.query(sql, [nome, nome_usuario, email, senha, assinatura], (erro, resultado) => {
         if(erro){
             return res.status(500).json({erro : erro.message});
@@ -122,13 +122,14 @@ server.put('/usuario/reativar/:id', (req, res) => {
 });
 
 server.put('/usuario/:id', (req, res) => {
-    const sql = "update Usuarios set nome = ?, nome_usuario = ?, senha = ?, assinatura = ? where id_usuario = ? and ativo = true";
+    const sql = "update Usuarios set nome = ?, nome_usuario = ?, email_usuario = ?, senha = ?, assinatura = ? where id_usuario = ? and ativo = true";
     const id = req.params.id;
     const nome = req.body.nome;
     const nome_usuario = req.body.nome_usuario;
-    const senha = req.body.senha;
+    const email = req.body.email_usuario;
+    const senha = bcrypt.hashSync(req.body.senha, 10);
     const assinatura = req.body.assinatura;
-    connection.query(sql, [nome, nome_usuario, senha, assinatura, id], (erro, resultado) => {
+    connection.query(sql, [nome, nome_usuario, email, senha, assinatura, id], (erro, resultado) => {
         if(erro){
             return res.status(500).json({erro : erro.message});
         }
