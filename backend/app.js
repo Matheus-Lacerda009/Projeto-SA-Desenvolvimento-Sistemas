@@ -85,12 +85,13 @@ server.put('/filme/:id', (req, res) => {
 //Usuários
 
 server.post('/usuario', (req, res) => {
-    const sql = "insert into Usuarios(nome, nome_usuario, senha, assinatura) values (?, ?, ?, ?)";
+    const sql = "insert into Usuarios(nome, nome_usuario, email_usuario, senha, assinatura) values (?, ?, ?, ?, ?)";
     const nome = req.body.nome;
     const nome_usuario = req.body.nome_usuario;
     const senha = bcrypt.hashSync(req.body.senha, 10);
     const assinatura = req.body.assinatura;
-    connection.query(sql, [nome, nome_usuario, senha, assinatura], (erro, resultado) => {
+    const email = req.body.email;
+    connection.query(sql, [nome, nome_usuario, email, senha, assinatura], (erro, resultado) => {
         if(erro){
             return res.status(500).json({erro : erro.message});
         }
@@ -135,24 +136,30 @@ server.put('/usuario/:id', (req, res) => {
     });
 });
 
-server.get('/usuario', (req, res) => {
+server.post('/usuario/login', (req, res) => {
     const usuario = "select senha from Usuarios where ativo = true and nome_usuario = ?";
     const identificador = req.body.identificador;
     const senha = req.body.senha;
-    connection.query(usuario, identificador, (erro, resultado) => {
+    let logado;
+    connection.query(usuario, identificador, async (erro, resultado) => {
         if(erro){
             return res.status(500).json({erro : erro.message});
         }
-        if(bcrypt.compare(senha, res.senha)){
-            return res.json({validacao : true});
+        if(resultado.length != 0){
+            logado = await bcrypt.compare(senha, resultado[0].senha);
+            return res.json({validacao : logado});
         }
-    });
-    const email = "select senha from Usuarios where ativo = true and nome_usuario = ?";
-    connection.query(email, identificador, (erro, resultado) => {
-        if(erro){
-            return res.status(500).json({erro : erro.message});
-        }
-        return res.json({validacao : bcrypt.compare(senha, res.senha)})
+        const email = "select senha from Usuarios where ativo = true and email_usuario = ?";
+        connection.query(email, identificador, async (erro, resultado) => {
+            if(erro){
+                return res.status(500).json({erro : erro.message});
+            }
+            if(resultado.length == 0){
+                return res.json({validacao : false});
+            }
+            logado = await bcrypt.compare(senha, resultado[0].senha);
+            return res.json({validacao : logado})
+        });
     });
 });
 
