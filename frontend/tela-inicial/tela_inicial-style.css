@@ -1,0 +1,51 @@
+.tela {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 0px 0px 899px;
+  position: relative;
+  background-color: #ffffff;
+}
+
+.tela .header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px;
+  position: relative;
+  align-self: stretch;
+  width: 100%;
+  flex: 0 0 auto;
+  background-color: #1c6c36;
+}
+
+.tela .espaamento {
+  position: relative;
+  width: 20px;
+  height: 100px;
+}
+
+.tela .circle-logo {
+  display: flex;
+  flex-direction: column;
+  width: 100px;
+  height: 100px;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  position: relative;
+  background-color: #ffffff;
+  border-radius: 200px;
+  overflow: hidden;
+}
+
+.tela .logo {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  aspect-ratio: 1.83;
+  object-fit: cover;
+}

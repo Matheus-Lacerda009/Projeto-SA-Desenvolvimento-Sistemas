@@ -14,6 +14,7 @@ loginButton.addEventListener('click', async function(){
     // Permite liberação offline para usuario administrador:
     if(email == "adm@dev.com" || senha == "aaa"){
         feedback.innerHTML = "Login realizado com sucesso!";
+        window.location.replace("tela-inicial/tela_inicial.html");
     }
 
     try{
