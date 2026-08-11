@@ -11,8 +11,17 @@ window.addEventListener("load", async function(){
         if(resposta.length == 0){
             videosContainer.innerHTML = "<span>Nenhum vídeo encontrado!</span>";
         }else{
+            // Adiciona elementos na tela:
             const code = listar(resposta);
             videosContainer.innerHTML = code;
+            // Configura sistemas para detalhes:
+            const conteudos = document.querySelectorAll(".div");
+            conteudos.forEach(c => {
+                c.addEventListener("click", (e) => {
+                    const id = e.currentTarget.dataset.id;
+                    window.location.href = `detalhes.html?id=${id}`;
+                })
+            });
         }
     } catch(error){
         videosContainer.innerHTML = `<span>Erro: ${error}</span>`;
@@ -24,7 +33,7 @@ function listar(lista){
 
     lista.forEach(conteudo => {
         code += `
-            <div class="div">
+            <div class="div" data-id=${conteudo.id_filme}>
                 <iframe class="rectangle" src="${conteudo.url}"></iframe>
                 <div class="div-wrapper">
                 <div class="text-wrapper-2">${conteudo.nome_filme}</div>
