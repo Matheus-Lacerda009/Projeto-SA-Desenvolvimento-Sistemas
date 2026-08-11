@@ -19,7 +19,7 @@ window.addEventListener("load", async function(){
             conteudos.forEach(c => {
                 c.addEventListener("click", (e) => {
                     const id = e.currentTarget.dataset.id;
-                    window.location.href = `detalhes.html?id=${id}`;
+                    window.location.href = `../pagina-detalhes/detalhes.html?id=${id}`;
                 })
             });
         }
