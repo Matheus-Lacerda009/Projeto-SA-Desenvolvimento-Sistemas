@@ -63,7 +63,6 @@
 .tela .conteudo-detalhes {
   display: inline-flex;
   flex-direction: column;
-  align-items: center;
   gap: 10px;
   padding: 30px;
   width: min(100%, 1090px);
@@ -87,6 +86,14 @@
   background-color: #d9d9d9;
   border-radius: 39px;
   border: 8px solid #1c6c36;
+}
+
+.centralizado {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  gap: 20px;
 }
 
 .tela .detalhes {
