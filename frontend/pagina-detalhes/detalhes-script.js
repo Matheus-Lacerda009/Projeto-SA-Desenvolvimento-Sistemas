@@ -33,3 +33,8 @@ window.addEventListener("load", async function(){
         conteudoElement.innerHTML = error;
     }
 });
+
+
+document.getElementById("logout").addEventListener("click", () => {
+    window.location.replace("../tela_login.html");
+});

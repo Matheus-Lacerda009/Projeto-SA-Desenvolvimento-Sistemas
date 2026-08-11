@@ -44,3 +44,7 @@ function listar(lista){
 
     return code;
 }
+
+document.getElementById("logout").addEventListener("click", () => {
+    window.location.replace("../tela_login.html");
+});
