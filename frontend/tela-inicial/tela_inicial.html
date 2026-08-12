@@ -8,13 +8,29 @@
     <link rel="stylesheet" href="tela_inicial-style.css">
 </head>
 <body>
-    <div class="tela" >
+    <div class="tela" data-model-id="4:55">
         <header class="header" >
-            <div class="espaamento" ></div>
             <div class="circle-logo" >
-                <img class="logo" src="../imagens/logo.png" />
+                <img class="logo" src="../imagens/logo.png">
             </div>
+            <img src="../imagens/logout-icon.png" id="logout">
         </header>
+        <div class="main">
+            <div class="barra-pesquisa">
+                <div class="frame">
+                    <input class="text-wrapper" placeholder="Pesquisar por um vídeo..." id="pesquisa-nome">
+                </div>
+                <img class="circle-lupa" src="https://c.animaapp.com/mc3MA1Xj/img/circle-lupa.svg" />
+            </div>
+            <div class="videos" id="videos">
+                <div class="div">
+                    <iframe class="rectangle" src="https://www.youtube.com/embed?v=dQw4w9WgXcQ&pp=ygUXbmV2ZXIgZ29ubmEgZ2l2ZSB5b3UgdXA%3D"></iframe>
+                    <div class="div-wrapper">
+                    <div class="text-wrapper-2">Título</div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
     <script src="tela_inicial-script.js"></script>
