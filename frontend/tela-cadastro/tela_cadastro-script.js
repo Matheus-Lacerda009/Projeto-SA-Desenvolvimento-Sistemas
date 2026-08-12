@@ -18,12 +18,12 @@ document.getElementById("cadastro-button").addEventListener("click", async funct
     };
 
     try{
-        const API = await fetch("http://localhost8085/usuario", {
+        const API = await fetch("http://localhost:8085/usuario", {
             method : "POST",
             headers : {
                 "Content-Type" : "application/json"
             },
-            body : corpo
+            body : JSON.stringify(corpo)
         });
         const resposta = await API.json();
 
@@ -33,6 +33,6 @@ document.getElementById("cadastro-button").addEventListener("click", async funct
             feedback.innerHTML = "Usuário criado com sucesso!!";
         }
     } catch(error){
-        feedback.innerHTML = error;
+        feedback.innerHTML = error.message;
     }
 });

@@ -29,16 +29,17 @@ loginButton.addEventListener('click', async function(){
         // Manda requisição:
         const API = await fetch(`http://localhost:8085/usuario/login`, {
             method: "POST",
-            header: {
+            headers: {
                 "Content-Type" : "application/json"
             },
-            body: corpo
+            body: JSON.stringify(corpo)
         });
         const resposta = await API.json();
 
         // Verifica a resposta:
         if(resposta.validacao){
             feedback.innerHTML = "Login realizado com sucesso!";
+            window.location.replace("tela-inicial/tela_inicial.html");
         } else{
             feedback.innerHTML = "Falha no login!";
         }
