@@ -8,6 +8,15 @@ server.use(express.json());
 
 server.use(cors());
 
+server.use(console.log("Requisição feita!"));
+
+function emailInvalido(req, res, next){
+    if(!req.body.email_usuario.includes("@")){
+        res.status(500).json({erro : "O email não possui @"});
+    }
+    return next();
+}
+
 //Filmes
 server.get('/filme', (req, res) => {
     const sql = "select * from Filmes where ativo = true";
@@ -96,7 +105,7 @@ server.put('/filme/:id', (req, res) => {
 //-----------------------------------------------------------------------------------------------------------------------------------------
 //Usuários
 
-server.post('/usuario', (req, res) => {
+server.post('/usuario', emailInvalido, (req, res) => {
     const sql = "insert into Usuarios(nome, nome_usuario, email_usuario, senha, assinatura) values (?, ?, ?, ?, ?)";
     const nome = req.body.nome;
     const nome_usuario = req.body.nome_usuario;
@@ -133,7 +142,7 @@ server.put('/usuario/reativar/:id', (req, res) => {
     });
 });
 
-server.put('/usuario/:id', (req, res) => {
+server.put('/usuario/:id', emailInvalido, (req, res) => {
     const sql = "update Usuarios set nome = ?, nome_usuario = ?, email_usuario = ?, senha = ?, assinatura = ? where id_usuario = ? and ativo = true";
     const id = req.params.id;
     const nome = req.body.nome;
@@ -149,7 +158,7 @@ server.put('/usuario/:id', (req, res) => {
     });
 });
 
-server.post('/usuario/login', (req, res) => {
+server.post('/usuario/login', emailInvalido, (req, res) => {
     const usuario = "select senha from Usuarios where ativo = true and nome_usuario = ?";
     const identificador = req.body.identificador;
     const senha = req.body.senha;
