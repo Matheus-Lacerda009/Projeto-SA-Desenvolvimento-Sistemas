@@ -1,0 +1,297 @@
+.tela {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  align-items: flex-start;
+  position: relative;
+  background-color: #ffffff;
+}
+
+
+/* == HEADER == */
+.tela .header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px;
+  position: relative;
+  align-self: stretch;
+  width: 100%;
+  flex: 0 0 auto;
+  background-color: #1c6c36;
+  justify-content: space-between;
+}
+
+.tela .espaamento {
+  position: relative;
+  width: 20px;
+  height: 100px;
+}
+
+.tela .circle-logo {
+  display: flex;
+  flex-direction: column;
+  width: 100px;
+  height: 100px;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  position: relative;
+  background-color: #ffffff;
+  border-radius: 200px;
+  overflow: hidden;
+}
+
+.tela .logo {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  aspect-ratio: 1.83;
+  object-fit: cover;
+}
+
+
+/* == MAIN == */
+.tela .main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 50px;
+  padding: 30px 20px;
+  position: relative;
+  align-self: stretch;
+  width: 100%;
+  flex: 1 0 auto;
+}
+
+.tela .barra-pesquisa {
+  display: flex;
+  width: min(100%, 640px);
+  align-items: center;
+  gap: 10px;
+  padding: 17px 24px;
+  position: relative;
+  background-color: #ffffff;
+  border-radius: 85px;
+  overflow: hidden;
+  border: 6px solid;
+  border-color: #fed701;
+}
+
+.tela .frame {
+  width: 100%;
+  min-width: 0;
+  align-items: center;
+  padding: 10px 15px;
+  background-color: #fffbea;
+  border-radius: 151px;
+  overflow: hidden;
+  border: 3px solid;
+  border-color: #fed701;
+  display: flex;
+  gap: 10px;
+  position: relative;
+}
+
+.tela .text-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  font-family: "Inter", Helvetica;
+  font-weight: 500;
+  color: #000000;
+  font-size: 18px;
+  letter-spacing: 0;
+  line-height: normal;
+  background-color: #00000000;
+  border: none;
+  outline: none;
+}
+
+.tela .circle-lupa {
+  position: relative;
+  width: 50px;
+  height: 50px;
+  aspect-ratio: 1;
+  flex: 0 0 auto;
+}
+
+.tela .videos {
+  display: flex;
+  width: 100%;
+  min-height: 250px;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 30px;
+  position: relative;
+  border-radius: 14px;
+  overflow: visible;
+}
+
+.tela .div {
+  flex-direction: column;
+  width: 290px;
+  max-width: 290px;
+  min-width: 240px;
+  align-items: center;
+  padding: 20px 10px;
+  border-radius: 23px;
+  overflow: hidden;
+  border: 8px solid;
+  border-color: #0d2033;
+  display: flex;
+  gap: 10px;
+  position: relative;
+  flex: 1 1 calc(25% - 30px);
+}
+
+.tela .rectangle {
+  position: relative;
+  width: 100%;
+  max-width: 236px;
+  aspect-ratio: 236 / 131;
+  border-radius: 10px;
+  border: 7px solid;
+  border-color: #1c6c36;
+}
+
+.tela .div-wrapper {
+  flex-direction: column;
+  align-items: flex-start;
+  flex: 1;
+  align-self: stretch;
+  width: 100%;
+  flex-grow: 1;
+  display: flex;
+  gap: 10px;
+  position: relative;
+}
+
+.tela .text-wrapper-2 {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: fit-content;
+  margin-top: -1px;
+  font-family: "Inter", Helvetica;
+  font-weight: 600;
+  color: #000000;
+  font-size: 18px;
+  letter-spacing: 0;
+  line-height: normal;
+}
+
+@media (min-width: 1025px) {
+  .tela .main {
+    padding: 30px 20px;
+  }
+
+  .tela .linha {
+    gap: 30px;
+  }
+
+  .tela .div {
+    flex: 1 1 calc(25% - 30px);
+  }
+}
+
+@media (min-width: 641px) and (max-width: 1024px) {
+  .tela .main {
+    gap: 36px;
+    padding: 24px 18px;
+  }
+
+  .tela .barra-pesquisa {
+    width: min(100%, 560px);
+    padding: 14px 20px;
+  }
+
+  .tela .frame {
+    padding: 9px 14px;
+  }
+
+  .tela .text-wrapper {
+    font-size: 16px;
+  }
+
+  .tela .videos {
+    gap: 24px;
+  }
+
+  .tela .linha {
+    gap: 22px;
+    min-height: 0;
+  }
+
+  .tela .div {
+    flex: 1 1 calc(50% - 22px);
+    max-width: 330px;
+    min-width: 220px;
+    border-width: 7px;
+    padding: 16px 10px;
+  }
+
+  .tela .rectangle {
+    border-width: 6px;
+  }
+}
+
+@media (max-width: 640px) {
+  .tela .main {
+    gap: 24px;
+    padding: 20px 12px;
+  }
+
+  .tela .barra-pesquisa {
+    width: 100%;
+    padding: 10px 12px;
+    border-width: 4px;
+    border-radius: 60px;
+    gap: 8px;
+  }
+
+  .tela .frame {
+    padding: 8px 10px;
+    border-width: 2px;
+    border-radius: 80px;
+  }
+
+  .tela .text-wrapper {
+    font-size: 14px;
+  }
+
+  .tela .circle-lupa {
+    width: 38px;
+    height: 38px;
+  }
+
+  .tela .videos {
+    gap: 16px;
+  }
+
+  .tela .linha {
+    gap: 12px;
+    min-height: 0;
+  }
+
+  .tela .div {
+    flex: 1 1 100%;
+    width: 100%;
+    max-width: 360px;
+    min-width: 0;
+    border-width: 6px;
+    border-radius: 18px;
+    padding: 14px 10px;
+  }
+
+  .tela .rectangle {
+    max-width: 100%;
+    border-width: 5px;
+  }
+
+  .tela .text-wrapper-2 {
+    font-size: 16px;
+  }
+}
