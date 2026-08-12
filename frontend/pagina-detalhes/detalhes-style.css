@@ -1,0 +1,192 @@
+/* Estilos Base */
+.tela {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: #ffffff;
+}
+
+
+/* == HEADER == */
+.tela .header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px;
+  position: relative;
+  align-self: stretch;
+  width: 100%;
+  flex: 0 0 auto;
+  background-color: #1c6c36;
+  justify-content: space-between;
+}
+
+.tela .espaamento {
+  position: relative;
+  width: 20px;
+  height: 100px;
+}
+
+.tela .circle-logo {
+  display: flex;
+  flex-direction: column;
+  width: 100px;
+  height: 100px;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  position: relative;
+  background-color: #ffffff;
+  border-radius: 200px;
+  overflow: hidden;
+}
+
+.tela .logo {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  aspect-ratio: 1.83;
+  object-fit: cover;
+}
+
+
+/* == MAIN == */
+.tela .main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 50px;
+  padding: 30px 50px;
+  width: 100%;
+  flex: 1 0 auto;
+}
+
+.tela .conteudo-detalhes {
+  display: inline-flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 30px;
+  width: min(100%, 1090px);
+  border-radius: 13px;
+  overflow: hidden;
+  border: 9px solid #0d2033;
+}
+
+.tela .id {
+  width: fit-content;
+  font-family: "Inter", Helvetica, sans-serif;
+  font-weight: 700;
+  color: #000000;
+  font-size: 36px;
+}
+
+.tela .video {
+  width: min(1012px, 100%);
+  aspect-ratio: 1012 / 577;
+  height: auto;
+  background-color: #d9d9d9;
+  border-radius: 39px;
+  border: 8px solid #1c6c36;
+}
+
+.centralizado {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  gap: 20px;
+}
+
+.tela .detalhes {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  width: min(1012px, 100%);
+  min-height: 119px;
+  height: auto;
+  padding: 20px;
+  border-radius: 39px;
+  overflow: hidden;
+  border: 8px solid #1c6c36;
+}
+
+.tela .text-wrapper {
+  width: fit-content;
+  font-family: "Inter", Helvetica, sans-serif;
+  font-weight: 600;
+  color: #000000;
+  font-size: 24px;
+  word-break: break-word;
+}
+
+/* Responsividade (Tablets) */
+@media (min-width: 641px) and (max-width: 1024px) {
+  .tela .main {
+    gap: 36px;
+    padding: 24px 28px;
+  }
+
+  .tela .conteudo-detalhes {
+    width: min(100%, 900px);
+    padding: 24px;
+    border-width: 8px;
+  }
+
+  .tela .id {
+    font-size: 32px;
+  }
+
+  .tela .video,
+  .tela .detalhes {
+    border-radius: 30px;
+    border-width: 7px;
+  }
+
+  .tela .detalhes {
+    padding: 18px;
+  }
+
+  .tela .text-wrapper {
+    font-size: 22px;
+  }
+}
+
+/* Responsividade (Móvel) */
+@media (max-width: 640px) {
+  .tela .main {
+    gap: 24px;
+    padding: 16px;
+  }
+
+  .tela .conteudo-detalhes {
+    width: 100%;
+    padding: 14px;
+    border-width: 6px;
+    border-radius: 10px;
+  }
+
+  .tela .id {
+    width: 100%;
+    text-align: left;
+    font-size: 24px;
+  }
+
+  .tela .video,
+  .tela .detalhes {
+    border-width: 5px;
+    border-radius: 18px;
+  }
+
+  .tela .detalhes {
+    min-height: 0;
+    padding: 12px;
+    gap: 8px;
+  }
+
+  .tela .text-wrapper {
+    width: 100%;
+    font-size: 16px;
+    line-height: 1.3;
+  }
+}
