@@ -8,7 +8,10 @@ server.use(express.json());
 
 server.use(cors());
 
-server.use(function (){console.log("Requisição feita!")});
+server.use(function (req, res, next){
+    console.log("Requisição feita!");
+    return next();
+});
 
 function emailInvalido(req, res, next){
     if(!req.body.email_usuario.includes("@")){
