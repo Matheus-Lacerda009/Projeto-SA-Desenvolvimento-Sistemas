@@ -19,6 +19,17 @@ server.get('/filme', (req, res) => {
     });
 });
 
+server.get('/filme/busca', (req, res) => {
+    const sql = "select * from Filmes where nome_filme like ? and ativo = true";
+    const nome = `%${req.query.nome}%`;
+    connection.query(sql, nome, (erro, resultado) => {
+        if(erro){
+            return res.status(500).json({erro : erro.message});
+        }
+        return res.json(resultado);
+    });
+});
+
 // Busca filme pelo ID:
 server.get('/filme/:id', (req, res) => {
     const sql = "select * from Filmes where id_filme = ?";
@@ -26,17 +37,6 @@ server.get('/filme/:id', (req, res) => {
     connection.query(sql, id, (erro, resultado) => {
         if(erro){
             return res.status(500).json({erro : erro.message})
-        }
-        return res.json(resultado);
-    });
-});
-
-server.get('/filme/busca', (req, res) => {
-    const sql = "select * from Filmes where nome_filme like ? and ativo = true";
-    const nome = `%${req.query.nome}%`;
-    connection.query(sql, nome, (erro, resultado) => {
-        if(erro){
-            return res.status(500).json({erro : erro.message});
         }
         return res.json(resultado);
     });
