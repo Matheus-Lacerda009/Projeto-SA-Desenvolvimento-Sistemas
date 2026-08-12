@@ -15,7 +15,7 @@ server.use(function (req, res, next){
 
 function emailInvalido(req, res, next){
     if(!req.body.email_usuario.includes("@")){
-        res.status(500).json({erro : "O email não possui @"});
+        return res.status(500).json({erro : "O email não possui @"});
     }
     return next();
 }
