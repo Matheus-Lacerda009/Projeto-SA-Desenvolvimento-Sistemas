@@ -161,7 +161,7 @@ server.put('/usuario/:id', emailInvalido, (req, res) => {
     });
 });
 
-server.post('/usuario/login', emailInvalido, (req, res) => {
+server.post('/usuario/login', (req, res) => {
     const usuario = "select senha from Usuarios where ativo = true and nome_usuario = ?";
     const identificador = req.body.identificador;
     const senha = req.body.senha;
